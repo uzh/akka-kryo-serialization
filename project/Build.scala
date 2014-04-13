@@ -26,7 +26,7 @@ object MinimalBuild extends Build {
   lazy val sonatypeSnapshot = "Sonatype Snapshots Repository" at "https://oss.sonatype.org/content/repositories/snapshots/"
   lazy val scalaTools = "Scala-Tools Repository" at "https://oss.sonatype.org/content/groups/scala-tools/"
 
-  lazy val root = Project(id = "akka-kryo-serialization", base = file("."), settings = Project.defaultSettings).settings(
+  lazy val root = Project(id = "akka-kryo-serialization-custom", base = file("."), settings = Project.defaultSettings).settings(
     version := buildVersion,
     organization := "com.github.romix.akka",
     resolvers += typesafe,
