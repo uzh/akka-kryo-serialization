@@ -16,7 +16,6 @@
 
 import sbt._
 import Keys._
-import com.typesafe.sbt.osgi.SbtOsgi.{ OsgiKeys, osgiSettings, defaultOsgiSettings }
 
 object MinimalBuild extends Build {
 
@@ -25,6 +24,7 @@ object MinimalBuild extends Build {
   lazy val typesafe = "Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/"
   lazy val typesafeSnapshot = "Typesafe Snapshots Repository" at "http://repo.typesafe.com/typesafe/snapshots/"
   lazy val sonatypeSnapshot = "Sonatype Snapshots Repository" at "https://oss.sonatype.org/content/repositories/snapshots/"
+  lazy val scalaTools = "Scala-Tools Repository" at "https://oss.sonatype.org/content/groups/scala-tools/"
 
   lazy val root = Project(id = "akka-kryo-serialization", base = file("."), settings = Project.defaultSettings).settings(
     version := buildVersion,
@@ -32,13 +32,13 @@ object MinimalBuild extends Build {
     resolvers += typesafe,
     resolvers += typesafeSnapshot,
     resolvers += sonatypeSnapshot,
+    resolvers += scalaTools,
     // publishArtifact in packageDoc := false,
-    crossScalaVersions := Seq("2.9.2", "2.9.3", "2.10.2"),
-    // crossScalaVersions := Seq("2.10.1"),
-    scalaVersion := "2.10.2",
-    libraryDependencies += "com.typesafe.akka" %% "akka-remote" % "2.3.1",
-    libraryDependencies += "com.typesafe.akka" %% "akka-kernel" % "2.3.1",
-    libraryDependencies += "com.esotericsoftware.kryo" % "kryo" % "2.23.0",
+    crossScalaVersions := Seq("2.10.4"),
+    scalaVersion := "2.10.4",
+    libraryDependencies += "com.typesafe.akka" %% "akka-remote" % "2.1.4" % "compile",
+    libraryDependencies += "com.typesafe.akka" %% "akka-kernel" % "2.1.4" % "compile",
+    libraryDependencies += "com.esotericsoftware.kryo" % "kryo" % "2.23.0" % "compile",
     libraryDependencies += "com.novocode" % "junit-interface" % "0.8" % "test",
     scalacOptions         := Seq(
       "-encoding", "utf8",
@@ -85,13 +85,4 @@ object MinimalBuild extends Build {
     </developer>
   </developers>
     ))
-    .settings(defaultOsgiSettings: _*)
-    .settings(
-      OsgiKeys.exportPackage := Seq("com.romix.akka.serialization.kryo;version\"0.3.0.1\"", "com.romix.scala.serialization.kryo;version\"0.3.0.1\""),
-      OsgiKeys.importPackage := Seq("com.esotericsoftware*;version=\"[2.20,3.0)\"",
-        "com.typesafe.config;version=\"[1.2.0, 2.0.0)\"",
-        "akka*;version=\"[2.1.0,3.0.0)\"",
-        "scala*;version=\"[2.9.2,2.11.0)\"",
-        "*")
-    )
 }
