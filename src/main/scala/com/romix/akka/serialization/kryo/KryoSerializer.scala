@@ -294,7 +294,7 @@ class KryoBasedSerializer(val kryo: Kryo, val bufferSize: Int, val bufferPoolSiz
 		}
 	}
 	
-	val buf = new Output(bufferSize, 1024 * 1024)
+	val buf = new Output(bufferSize, -1)
 	private def getBuffer = buf
 	private def releaseBuffer(buffer: Output) = { buffer.clear() } 
 		
