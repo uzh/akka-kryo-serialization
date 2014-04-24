@@ -19,7 +19,7 @@ import Keys._
 
 object MinimalBuild extends Build {
 
-  lazy val buildVersion = "0.3.2"
+  lazy val buildVersion = "0.3.4"
 
   lazy val typesafe = "Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/"
   lazy val typesafeSnapshot = "Typesafe Snapshots Repository" at "http://repo.typesafe.com/typesafe/snapshots/"
@@ -33,11 +33,9 @@ object MinimalBuild extends Build {
     resolvers += typesafeSnapshot,
     resolvers += sonatypeSnapshot,
     resolvers += scalaTools,
-    // publishArtifact in packageDoc := false,
-    crossScalaVersions := Seq("2.10.4"),
-    scalaVersion := "2.10.4",
-    libraryDependencies += "com.typesafe.akka" %% "akka-remote" % "2.1.4" % "compile",
-    libraryDependencies += "com.typesafe.akka" %% "akka-kernel" % "2.1.4" % "compile",
+    scalaVersion := "2.11.0",
+    libraryDependencies += "com.typesafe.akka" %% "akka-remote" % "2.3.2" % "compile",
+    libraryDependencies += "com.typesafe.akka" %% "akka-kernel" % "2.3.2" % "compile",
     libraryDependencies += "com.esotericsoftware.kryo" % "kryo" % "2.23.0" % "compile",
     libraryDependencies += "com.novocode" % "junit-interface" % "0.8" % "test",
     scalacOptions         := Seq(
